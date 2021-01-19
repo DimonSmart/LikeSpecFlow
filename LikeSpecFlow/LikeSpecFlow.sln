@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LikeSpecFlow", "LikeSpecFlow\LikeSpecFlow.csproj", "{F168F2C9-E8D1-4E71-9C5E-59CE74EC926B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LikeSpecFlowTests", "LikeSpecFlowTests\LikeSpecFlowTests.csproj", "{BA39E436-F8FA-4935-8CDB-D839531D4766}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F168F2C9-E8D1-4E71-9C5E-59CE74EC926B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F168F2C9-E8D1-4E71-9C5E-59CE74EC926B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F168F2C9-E8D1-4E71-9C5E-59CE74EC926B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F168F2C9-E8D1-4E71-9C5E-59CE74EC926B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA39E436-F8FA-4935-8CDB-D839531D4766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA39E436-F8FA-4935-8CDB-D839531D4766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA39E436-F8FA-4935-8CDB-D839531D4766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA39E436-F8FA-4935-8CDB-D839531D4766}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02DDA6D1-DD5A-41D3-B0D8-8DDCA70F39F5}
+	EndGlobalSection
+EndGlobal
