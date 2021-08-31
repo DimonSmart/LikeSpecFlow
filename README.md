@@ -17,3 +17,27 @@ In reality I've faced several problems
 P.S. Feel free to contact me, discuss, suggest updates etc.
 
 Disclaimer. Now its just a proof of concept.
+
+## Example
+### C# Code 
+```
+ CreateTest("Login test")
+   .InitializeSelenumWith_Parameter("/nocache")
+   .OpenPage("mail.ru")
+   .WaitWorElement_Clickable("loginButton")
+   .Type_OnControl_("Name", "Jon@mail.ru")
+   .Type_OnControl_("Password", "123")
+   .ClickOn_Control("Login")
+   .AssertForElement_Exists("logo",  i => i.Should().BeOfType<ImageElement>().Which.LogoName.Should().BeNull());
+```
+### Test as text
+```
+Step 0:Initialize Selenum With </nocache> Parameter
+Step 1:Open Page <mail.ru>
+Step 2:Wait Wor Element <loginButton> Clickable
+Step 3:Type <Jon@mail.ru> On Control <Name> 
+Step 4:Type <123> On Control <Password> 
+Step 5:Click On <Login> Control
+Step 6:Assert For Element <logo> Exists
+```
+
