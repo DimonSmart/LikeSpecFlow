@@ -8,10 +8,12 @@ namespace LikeSpecFlow
     public class Test
     {
         public readonly string TestName;
+        private readonly ITestConsole _testConsole;
         public int StepNumber;
-        public Test(string testName)
+        public Test(string testName, ITestConsole testConsole = null)
         {
             TestName = testName;
+            _testConsole = testConsole ?? new ColoredTestConsole();
         }
 
         public readonly Dictionary<string, object> State = new Dictionary<string, object>();
@@ -38,14 +40,26 @@ namespace LikeSpecFlow
                 }
             }
 
-            WriteColored($"Step {StepNumber++}:{string.Join(" ", sb)}");
+            Write($"Step {StepNumber++}:{string.Join(" ", sb)}");
         }
 
-        public void WriteColored(string s)
+        private void Write(string s)
+        {
+            if (_testConsole is IColoredTestConsole coloredTestConsole)
+            {
+                WriteColored(s, coloredTestConsole);
+            }
+            else
+            {
+                _testConsole.WriteLine(s);
+            }
+        }
+
+        private static void WriteColored(string s, IColoredTestConsole coloredTestConsole)
         {
             const ConsoleColor defaultColor = ConsoleColor.Yellow;
             const ConsoleColor parameterColor = ConsoleColor.Green;
-            Console.ForegroundColor = defaultColor;
+            coloredTestConsole.ForegroundColor = defaultColor;
             foreach (var c in s)
             {
                 if (c == '<')
@@ -60,9 +74,9 @@ namespace LikeSpecFlow
                     continue;
                 }
 
-                Console.Write(c);
+                coloredTestConsole.Write(c);
             }
-            Console.WriteLine();
+            coloredTestConsole.WriteLine();
             Console.ResetColor();
         }
 
@@ -73,11 +87,6 @@ namespace LikeSpecFlow
         public T Get<T>(string name)
         {
             return (T)State[name];
-        }
-
-        internal object SeleniumAssert(Action<object> p)
-        {
-            throw new NotImplementedException();
         }
     }
 }

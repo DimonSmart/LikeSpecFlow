@@ -38,7 +38,7 @@ namespace LikeSpecFlow
         public IWebElement Find(string selector)
         {
             Log($"Selenium. Find element:{selector}");
-            return new Imagelement();
+            return new ImageElement();
         }
     }
 }
