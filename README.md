@@ -11,7 +11,7 @@ While I appreciate the concept of how SpecFlow works, I have encountered some pr
 - Converting all parameters from strings can result in localization errors for dates, doubles, and other types.
 - It can be difficult to use my preferred FluentAssertion library in combination with SpecFlow's assertion framework.
 
-Overall, while I still find SpecFlow to be a useful testing framework in some situations, these issues have made it more challenging to work with in practice.
+Overall, while SpecFlow can be a useful testing framework in certain situations, its limitations and overheads may make it less suitable for C# based tests descriptions. Other alternatives, such as writing test cases in plain C# code, may provide a simpler and more efficient approach to test development.
 
 ### SpecFlow https://specflow.org/
 ### Builder pattern https://medium.com/@martinstm/fluent-builder-pattern-c-4ac39fafcb0b
