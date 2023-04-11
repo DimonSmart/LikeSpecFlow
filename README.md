@@ -2,13 +2,16 @@
 Small demo, how to write tests in specflow style on plain c#
 
 ## Intro
-I like the way specflow works ... in theory.
-In reality I've faced several problems
-- Plugin needed for IDE (not all IDE currently supported. Vote for Rider https://youtrack.jetbrains.com/issue/RIDER-9750)
-- Typos in step definition lead to long error hunting
-- Step text definition and step-method definition are almost the same. Ant it hard to support sync between.
-- Converting all parameters from strings leads to localization errors for dates, doubles, etc.
-- It is hard to combine asserts with my favorite FluentAssertion lib.
+
+While I appreciate the concept of how SpecFlow works, I have encountered some practical issues that have made it challenging to use effectively. Specifically, I have experienced the following problems:
+
+- The need for an IDE plugin, which is not yet available for all IDEs. I have voted for Rider to support SpecFlow (https://youtrack.jetbrains.com/issue/RIDER-9750).
+- Typos in step definitions can be difficult to track down and fix, leading to wasted time and effort.
+- The similarities between step text definitions and step method definitions can make it difficult to keep them in sync.
+- Converting all parameters from strings can result in localization errors for dates, doubles, and other types.
+- It can be difficult to use my preferred FluentAssertion library in combination with SpecFlow's assertion framework.
+
+Overall, while I still find SpecFlow to be a useful testing framework in some situations, these issues have made it more challenging to work with in practice.
 
 ### SpecFlow https://specflow.org/
 ### Builder pattern https://medium.com/@martinstm/fluent-builder-pattern-c-4ac39fafcb0b
