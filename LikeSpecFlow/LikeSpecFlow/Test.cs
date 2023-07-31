@@ -16,23 +16,23 @@ namespace LikeSpecFlow
             _testConsole = testConsole ?? new ColoredTestConsole();
         }
 
-        public readonly Dictionary<string, object> State = new Dictionary<string, object>();
+        public readonly Dictionary<string, object> State = new();
 
         public void Report(string parameter, [CallerMemberName] string stepName = "")
         {
-            Report(new string[] { parameter }, stepName);
+            Report(new[] { parameter }, stepName);
         }
 
         public void Report(string[] parameters, [CallerMemberName] string stepName = "")
         {
             stepName = stepName.SplitByCapitalLetters();
-            var splitted = stepName.Split("_");
+            var split = stepName.Split("_");
             var sb = new List<string>();
-            for (int i = 0; i < Math.Max(splitted.Length, parameters.Length); i++)
+            for (var i = 0; i < Math.Max(split.Length, parameters.Length); i++)
             {
-                if (splitted.Length > i)
+                if (split.Length > i)
                 {
-                    sb.Add(splitted[i].Trim());
+                    sb.Add(split[i].Trim());
                 }
                 if (parameters.Length > i)
                 {

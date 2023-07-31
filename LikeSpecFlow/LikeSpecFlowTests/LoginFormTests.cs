@@ -18,14 +18,18 @@ namespace LikeSpecFlowTests
         public void LoginSuccessTest()
         {
             CreateTest("Login test")
-                .InitializeSelenumWith_Parameter("/nocache")
+                .InitializeSeleniumWith_Parameter("/nocache")
                 .OpenPage("mail.ru")
                 .WaitWorElement_Clickable("loginButton")
                 .Type_OnControl_("Name", "Jon@mail.ru")
                 .Type_OnControl_("Password", "123")
                 .ClickOn_Control("Login")
                 .AssertForElement_Exists("logo",
-                    i => i.Should().BeOfType<ImageElement>().Which.LogoName.Should().BeNull());
+                    i => i.Should()
+                        .BeOfType<ImageElement>()
+                        .Which
+                        .LogoName
+                        .Should().BeNull()); // Check for right logo
         }
 
         [Theory]
@@ -34,7 +38,7 @@ namespace LikeSpecFlowTests
         public void LoginSuccessTestDataDriven(string name, string password, string expectedLogoName)
         {
             CreateTest("Data driven Login test")
-                .InitializeSelenumWith_Parameter("/nocache")
+                .InitializeSeleniumWith_Parameter("/nocache")
                 .OpenPage("mail.ru")
                 .WaitWorElement_Clickable("loginButton")
                 .Type_OnControl_("Name", name)
