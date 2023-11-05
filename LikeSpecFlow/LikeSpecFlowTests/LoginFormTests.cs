@@ -1,56 +1,48 @@
-using FluentAssertions;
 using LikeSpecFlow;
+using LikeSpecFlow.Actions;
+using LikeSpecFlow.Consoles;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace LikeSpecFlowTests
+namespace LikeSpecFlowTests;
+
+public class LoginFormTests
 {
-    public class LoginFormTests
+    private readonly ITestConsole _testConsole;
+
+    public LoginFormTests(ITestOutputHelper outputHelper)
     {
-        private readonly ITestConsole _testConsole;
+        _testConsole = new XUnitTestConsole(outputHelper);
+    }
 
-        public LoginFormTests(ITestOutputHelper outputHelper)
-        {
-            _testConsole = new XUnitTestConsole(outputHelper);
-        }
+    [Fact]
+    public void LoginSuccessTest()
+    {
+        CreateTest("Login test")
+            .InitializeSeleniumWith_Parameter("/nocache")
+            .OpenWebPage("mail.ru")
+            .Type_On_Control("Name", "Jon@mail.ru")
+            .Type_On_Control("Password", "123")
+            .ClickOn_Button("Login")
+            .AssertFor_HeaderExists("Welcome logo");
+    }
 
-        [Fact]
-        public void LoginSuccessTest()
-        {
-            CreateTest("Login test")
-                .InitializeSeleniumWith_Parameter("/nocache")
-                .OpenPage("mail.ru")
-                .WaitWorElement_Clickable("loginButton")
-                .Type_OnControl_("Name", "Jon@mail.ru")
-                .Type_OnControl_("Password", "123")
-                .ClickOn_Control("Login")
-                .AssertForElement_Exists("logo",
-                    i => i.Should()
-                        .BeOfType<ImageElement>()
-                        .Which
-                        .LogoName
-                        .Should().BeNull()); // Check for right logo
-        }
+    [Theory]
+    [InlineData("Jon@mail.ru", "123", "Welcome John")]
+    [InlineData("Alex@mail.ru", "1234", "Welcome Alex")]
+    public void LoginSuccessTestDataDriven(string userName, string password, string expectedLogoName)
+    {
+        CreateTest("Data driven Login test")
+            .InitializeSeleniumWith_Parameter("/nocache")
+            .OpenWebPage("mail.ru")
+            .Type_On_Control("UserName", userName)
+            .Type_On_Control("Password", password)
+            .ClickOn_Button("Login")
+            .AssertFor_HeaderExists(expectedLogoName);
+    }
 
-        [Theory]
-        [InlineData("Jon@mail.ru", "123", null)]
-        [InlineData("Jon1@mail.ru", "1234", null)]
-        public void LoginSuccessTestDataDriven(string name, string password, string expectedLogoName)
-        {
-            CreateTest("Data driven Login test")
-                .InitializeSeleniumWith_Parameter("/nocache")
-                .OpenPage("mail.ru")
-                .WaitWorElement_Clickable("loginButton")
-                .Type_OnControl_("Name", name)
-                .Type_OnControl_("Password", password)
-                .ClickOn_Control("Login")
-                .AssertForElement_Exists("logo",
-                    i => i.Should().BeOfType<ImageElement>().Which.LogoName.Should().Be(expectedLogoName));
-        }
-
-        private Test CreateTest(string testName)
-        {
-            return new Test(testName, _testConsole);
-        }
+    private TestSession CreateTest(string testName)
+    {
+        return new TestSession(testName, _testConsole);
     }
 }
